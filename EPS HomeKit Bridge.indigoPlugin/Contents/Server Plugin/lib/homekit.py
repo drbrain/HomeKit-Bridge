@@ -3088,11 +3088,11 @@ class service_AirQualitySensor (Service):
 		super(service_AirQualitySensor, self).__init__ (factory, type, desc, objId, serverId, characterDict, deviceActions, loadOptional)
 		
 		self.required = {}
-		self.required["AirQuality"] = {"*": "state_aqi", "indigo.SensorDevice": "attr_sensorValue", "indigo.Device.com.eps.indigoplugin.device-extensions.epsdecon": "state_convertedValue"}
+		self.required["AirQuality"] = {"*": "state_appleAirQuality", "****": "attr_sensorValue", "indigo.Device.com.eps.indigoplugin.device-extensions.epsdecon": "state_convertedValue"}
 		
 		self.optional = {}
 		self.optional["StatusActive"] = {"*": "attr_onState"}
-		self.optional["StatusFault"] = {}
+		self.optional["StatusFault"] = {"*": "state_valid"}
 		self.optional["StatusTampered"] = {}
 		self.optional["StatusLowBattery"] = {"*": "special_lowbattery"}
 		self.optional["Name"] = {}
@@ -4891,16 +4891,16 @@ class characteristic_OutletInUse:
 # ==============================================================================
 # AIR QUALITY
 # ==============================================================================
-class characteristic_AirQuality:	
+class characteristic_AirQuality:
 	def __init__(self):
-		self.value = 0 
-		self.maxValue = 10000
+		self.value = 0
+		self.maxValue = 5
 		self.minValue = 0
 		self.minStep = 1
 		
 		self.readonly = True
-		self.notify = True	
-		self.changeMinMax = False	
+		self.notify = True
+		self.changeMinMax = False
 		
 # ==============================================================================
 # OZONE DENSITY
